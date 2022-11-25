@@ -5,6 +5,6 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://linked.arturososa.dev",
+  site: `${process.env.DEPLOY_URL}`,
   integrations: [tailwind()]
 });

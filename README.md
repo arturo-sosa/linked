@@ -1,5 +1,8 @@
 # Welcome to [Astro](https://astro.build)
 
+[![Deploy](https://github.com/arturo-sosa/linked/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/arturo-sosa/linked/actions/workflows/cd.yml)
+[![Build](https://github.com/arturo-sosa/linked/actions/workflows/ci.yml/badge.svg)](https://github.com/arturo-sosa/linked/actions/workflows/ci.yml)
+
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/basics)
 

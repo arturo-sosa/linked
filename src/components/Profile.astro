@@ -1,0 +1,35 @@
+---
+import type {User} from '../constants/user-model';
+
+export interface Props {
+    user: User;
+}
+
+const { user } = Astro.props;
+---
+
+<div class="profile">
+    <div class="profile-wrapper">
+        <img class="profile-image" src={user.img} alt="Profile picture"/>
+    </div>
+
+    <div class="profile-name">{user.name}</div>
+</div>
+
+<style>
+    .profile {
+        @apply flex flex-col gap-2 items-center w-11/12 max-w-2xl m-3;
+    }
+
+    .profile-wrapper {
+        @apply w-16 h-16;
+    }
+
+    .profile-image {
+        @apply rounded-full;
+    }
+
+    .profile-name {
+        @apply text-xl font-bold;
+    }
+</style>

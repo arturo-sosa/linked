@@ -1,0 +1,20 @@
+---
+import type { Links } from "../constants/link-model";
+import Link from "./Link.astro";
+
+export interface Props {
+  links: Links;
+}
+
+const { links } = Astro.props;
+---
+
+<ul class="links">
+  {links.map((link) => <Link {link} />)}
+</ul>
+
+<style>
+  .links {
+    @apply w-full flex flex-col gap-3;
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<linked-copy data-href={href}>
+  <button class="link-copy">
+    <i class="fa-solid fa-clone"></i>
+  </button>
+</linked-copy>
+
+<script>
+  class LinkedCopy extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener("click", this.copy);
+    }
+
+    copy(evt: Event) {
+      evt.preventDefault();
+
+      const href = this.dataset.href;
+
+      if (href === undefined) return;
+
+      navigator.clipboard.writeText(href);
+      this.classList.add("animate-quick-ping");
+
+      setTimeout(() => {
+        this.classList.remove("animate-quick-ping");
+      }, 1000);
+    }
+  }
+
+  customElements.define("linked-copy", LinkedCopy);
+</script>
+
+<style>
+  .link-copy {
+    @apply text-center w-6 h-4 hover:text-red-400 transition-colors duration-300;
+  }
+</style>

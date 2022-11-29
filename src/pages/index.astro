@@ -1,61 +1,26 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Profile from '../components/Profile.astro';
+import Layout from "../layouts/Layout.astro";
+import Profile from "../components/Profile.astro";
+import Links from "../components/Links.astro";
 
 const dataRequest = await fetch(import.meta.env.PUBLIC_DATA_URL);
 const data = await dataRequest.json();
 const gistUrl = data.files.linked.raw_url;
 
-
 const linkedRequest = await fetch(gistUrl);
 const linked = await linkedRequest.json();
-const {user, links} = linked;
+const { user, links } = linked;
 ---
 
 <Layout title={`Linked - ${user.name}`}>
-	<main>
-		<Profile {user}/>
-
-		<ul class="links">
-			{
-				links.map((link: Link) => 
-					<li class="link">
-						<span class="link-icon">
-							<i class={link.icon} />
-						</span>
-						
-						{link.title !== 'Email' && <a class="link-name" href={link.href} target="_blank">{link.title}</a>}
-						{link.title === 'Email' && <div class="link-name">{link.title}</div>}
-
-						<span class="link-copy">
-							<i class="fa-solid fa-clone"/>
-						</span>
-					</li>
-				)
-			}
-		</ul>
-	</main>
+  <main>
+    <Profile {user} />
+    <Links {links} />
+  </main>
 </Layout>
 
 <style>
-	main {
-		@apply flex flex-col gap-4 items-center max-w-3xl w-11/12 p-3 mt-4;
-	}
-
-	.links {
-		@apply w-full flex flex-col gap-3;
-	}
-
-	.link {
-		@apply w-full flex justify-between p-2 bg-slate-700 rounded-md gap-2 hover:cursor-pointer hover:bg-slate-800;
-	}
-
-	.link-icon,
-	.link-copy {
-		@apply text-center w-6 h-4;
-	}
-
-	.link-name {
-		@apply flex-1;
-	}
+  main {
+    @apply flex flex-col gap-4 items-center max-w-3xl w-11/12 p-3 mt-4;
+  }
 </style>

@@ -1,0 +1,39 @@
+---
+import type { Link } from "../constants/link-model";
+import LinkedCopy from "./LinkedCopy.astro";
+
+export interface Props extends Link {}
+
+const { link } = Astro.props;
+const isEmail = link.title === "Email";
+---
+
+<li class="link">
+  <span class="link-icon">
+    <i class={link.icon}></i>
+  </span>
+
+  <a
+    class="link-name"
+    href={isEmail ? `mailto:${link.href}?subject=Linked contact` : link.href}
+    target="_blank"
+  >
+    {link.title}
+  </a>
+
+  <LinkedCopy href={link.href} />
+</li>
+
+<style>
+  .link {
+    @apply w-full flex justify-between p-2 bg-slate-700 rounded-md gap-2 hover:cursor-pointer hover:bg-slate-800;
+  }
+
+  .link-icon {
+    @apply text-center w-6 h-4;
+  }
+
+  .link-name {
+    @apply flex-1 hover:text-red-400 transition-colors duration-300;
+  }
+</style>
